@@ -17,7 +17,7 @@ char **split_string(char *str, char *delimiters)
 	if (!delimiters)
 		delimiters = " ";
 	for (i = 0; str[i] != '\0'; i++)
-		if (!is_delimiter(str[i], delimiters) && (is_delimiter(str[i + 1], delimiters) || !str[i + 1]))
+		if (!is_delim(str[i], delimiters) && (is_delim(str[i + 1], delimiters) || !str[i + 1]))
 			num_words++;
 
 	if (num_words == 0)
@@ -27,10 +27,10 @@ char **split_string(char *str, char *delimiters)
 		return (NULL);
 	for (i = 0, j = 0; j < num_words; j++)
 	{
-		while (is_delimiter(str[i], delimiters))
+		while (is_delim(str[i], delimiters))
 			i++;
 		k = 0;
-		while (!is_delimiter(str[i + k], delimiters) && str[i + k])
+		while (!is_delim(str[i + k], delimiters) && str[i + k])
 			k++;
 		tokens[j] = malloc((k + 1) * sizeof(char));
 		if (!tokens[j])
