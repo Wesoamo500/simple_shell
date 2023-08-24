@@ -8,7 +8,6 @@
  */
 int interactive(info_t *info)
 {
-    // Checks if stdin is a terminal and readfd is within the range [0, 2]
     return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
@@ -23,10 +22,10 @@ int is_delim(char c, char *delim)
     while (*delim)
     {
         if (*delim == c)
-            return 1; // Found a match, return true
+            return 1;
         delim++;
     }
-    return 0; // No match found, return false
+    return 0;
 }
 
 /**
