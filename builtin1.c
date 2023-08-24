@@ -31,13 +31,10 @@ int unset_alias(info_t *info, char *str)
     equal_position = _strchr(str, '=');
     if (!equal_position)
     {
-        return 1; // No '=' character found, indicating an error
+        return 1;
     }
-
-    saved_char = *equal_position; // Save the character at the equal position
-    *equal_position = '\0'; // Temporarily set '=' to a null terminator
-
-    // Find and delete the node corresponding to the alias in the alias list
+    saved_char = *equal_position;
+    *equal_position = '\0';
     if (info->alias)
     {
         int index = get_node_index(info->alias, node_starts_with(info->alias, str, -1));
@@ -45,10 +42,9 @@ int unset_alias(info_t *info, char *str)
     }
     else
     {
-        return_value = 1; // Error: No alias list to remove from
+        return_value = 1;
     }
-
-    *equal_position = saved_char; // Restore the original character
+    *equal_position = saved_char;
     return return_value;
 }
 
@@ -67,7 +63,7 @@ int set_alias(info_t *info, char *alias_str)
     equal_position = _strchr(alias_str, '=');
     if (!equal_position)
     {
-        return 1; // No '=' character found, indicating an error
+        return 1;
     }
 
     if (!*++equal_position)
