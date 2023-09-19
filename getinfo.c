@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * clear_info - initializes info_t struct
  * @info: struct address
@@ -18,7 +19,7 @@ void clear_info(info_t *info)
  */
 void set_info(info_t *info, char **av)
 {
-	int idx = 0;
+	int i = 0;
 
 	info->fname = av[0];
 	if (info->arg)
@@ -26,6 +27,7 @@ void set_info(info_t *info, char **av)
 		info->argv = strtow(info->arg, " \t");
 		if (!info->argv)
 		{
+
 			info->argv = malloc(sizeof(char *) * 2);
 			if (info->argv)
 			{
@@ -33,9 +35,9 @@ void set_info(info_t *info, char **av)
 				info->argv[1] = NULL;
 			}
 		}
-		for (idx = 0; info->argv && info->argv[idx]; idx++)
+		for (i = 0; info->argv && info->argv[i]; i++)
 			;
-		info->argc = idx;
+		info->argc = i;
 
 		replace_alias(info);
 		replace_vars(info);
@@ -63,7 +65,7 @@ void free_info(info_t *info, int all)
 		if (info->alias)
 			free_list(&(info->alias));
 		ffree(info->environ);
-		info->environ = NULL;
+			info->environ = NULL;
 		bfree((void **)info->cmd_buf);
 		if (info->readfd > 2)
 			close(info->readfd);
