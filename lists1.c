@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * list_len - determines length of linked list
  * @h: pointer to first node
@@ -7,14 +8,14 @@
  */
 size_t list_len(const list_t *h)
 {
-	size_t count = 0;
+	size_t i = 0;
 
 	while (h)
 	{
 		h = h->next;
-		count++;
+		i++;
 	}
-	return (count);
+	return (i);
 }
 
 /**
@@ -26,13 +27,13 @@ size_t list_len(const list_t *h)
 char **list_to_strings(list_t *head)
 {
 	list_t *node = head;
-	size_t list_size = list_len(head), i, j;
+	size_t i = list_len(head), j;
 	char **strs;
 	char *str;
 
-	if (!head || !list_size)
+	if (!head || !i)
 		return (NULL);
-	strs = malloc(sizeof(char *) * (list_size + 1));
+	strs = malloc(sizeof(char *) * (i + 1));
 	if (!strs)
 		return (NULL);
 	for (i = 0; node; node = node->next, i++)
@@ -53,6 +54,7 @@ char **list_to_strings(list_t *head)
 	return (strs);
 }
 
+
 /**
  * print_list - prints all elements of a list_t linked list
  * @h: pointer to first node
@@ -61,7 +63,7 @@ char **list_to_strings(list_t *head)
  */
 size_t print_list(const list_t *h)
 {
-	size_t count = 0;
+	size_t i = 0;
 
 	while (h)
 	{
@@ -71,9 +73,9 @@ size_t print_list(const list_t *h)
 		_puts(h->str ? h->str : "(nil)");
 		_puts("\n");
 		h = h->next;
-		count++;
+		i++;
 	}
-	return (count);
+	return (i);
 }
 
 /**
@@ -107,14 +109,14 @@ list_t *node_starts_with(list_t *node, char *prefix, char c)
  */
 ssize_t get_node_index(list_t *head, list_t *node)
 {
-	size_t index = 0;
+	size_t i = 0;
 
 	while (head)
 	{
 		if (head == node)
-			return (index);
+			return (i);
 		head = head->next;
-		index++;
+		i++;
 	}
 	return (-1);
 }
