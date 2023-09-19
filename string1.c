@@ -5,20 +5,20 @@
  * @dest: the destination
  * @src: the source
  *
- * Return: pointer to the destination
+ * Return: pointer to destination
  */
 char *_strcpy(char *dest, char *src)
 {
 	int i = 0;
 
-	if (dest == src || src == NULL)
+	if (dest == src || src == 0)
 		return (dest);
 	while (src[i])
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
+	dest[i] = 0;
 	return (dest);
 }
 
@@ -40,8 +40,8 @@ char *_strdup(const char *str)
 	ret = malloc(sizeof(char) * (length + 1));
 	if (!ret)
 		return (NULL);
-	while (length--)
-		ret[length] = *(--str);
+	for (length++; length--;)
+		ret[length] = *--str;
 	return (ret);
 }
 
