@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * add_node - adds a node to the start of the list
  * @head: address of pointer to head node
@@ -103,7 +104,7 @@ size_t print_list_str(const list_t *h)
 int delete_node_at_index(list_t **head, unsigned int index)
 {
 	list_t *node, *prev_node;
-	unsigned int i;
+	unsigned int i = 0;
 
 	if (!head || !*head)
 		return (0);
@@ -117,7 +118,7 @@ int delete_node_at_index(list_t **head, unsigned int index)
 		return (1);
 	}
 	node = *head;
-	for (i = 0, prev_node = NULL; node; i++, prev_node = node, node = node->next)
+	while (node)
 	{
 		if (i == index)
 		{
@@ -126,6 +127,9 @@ int delete_node_at_index(list_t **head, unsigned int index)
 			free(node);
 			return (1);
 		}
+		i++;
+		prev_node = node;
+		node = node->next;
 	}
 	return (0);
 }
